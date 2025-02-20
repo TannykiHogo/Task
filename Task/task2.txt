@@ -1,0 +1,6 @@
+DELETE FROM stocks WHERE id NOT IN (SELECT stock_id FROM availabilities);
+
+DELETE products, categories FROM availabilities
+RIGHT JOIN products ON availabilities.product_id = products.id 
+RIGHT JOIN categories ON categories.id = products.category_id
+WHERE availabilities.id IS NULL;
